@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>oneBitGen</title>
+        <meta name="description" content="Page Description" />
+        <meta name="keywords" content="keywords, separated by commas" />
+        <meta name="author" content="Author Name" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+
+        <div id="title">
+            <h1>oneBitForge</h1>
+        </div>
+
+        <div id="content">
+
+            <div id="controls">
+
+                <form action="">
+
+                    <div id="selectCtrl">
+                        <div>
+                            <label for="WfSelect">Waveform</label>
+                            <select name="waveform" id="WfSelect">
+                                <option value="1">Square</option>
+                                <option value="2">Triangle</option>
+                                <option value="3">Sawtooth</option>
+                                <option value="4">Noise</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="QSelect">Quality</label>
+                            <select name="quality" id="QSelect">
+                                <option value="8000">8000Hz</option>
+                                <option value="11025">11025Hz</option>
+                                <option value="22050">22050Hz</option>
+                                <option value="44100">44100Hz</option>
+                                <option value="48000">48000Hz</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="BSelect">Bits</label>
+                            <select name="bits" id="BSelect">
+                                <option value="1">1-bit</option>
+                                <option value="2">8-bit</option>
+                                <option value="3">12-bit</option>
+                                <option value="4">16-bit</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="rangeCtrl">
+                        <label for="DCRange">Duty-Cycle</label>
+                        <input type="range" name="duty_cycle" id="DCRange"/>
+
+                        <label for="AtkRange">Attack</label>
+                        <input type="range" name="attack" id="AtkRange" />
+
+                        <label for="DcyRange">Decay</label>
+                        <input type="range" name="decay" id="DcyRange" />
+
+                        <label for="RlseRange">Release</label>
+                        <input type="range" name="release" id="RlseRange" />
+
+                        <label for="SusRange">Sustain</label>
+                        <input type="range" name="sustain" id="SusRange" />
+
+                    </div>
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                </form>
+            </div>
+            <div id="monitor"></div>
+            <div id="keyboard"></div>
+        </div>
+    </body>
+</html>

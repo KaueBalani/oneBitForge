@@ -1,0 +1,137 @@
+@font-face {
+    font-family: "db-pixel";
+    src: url(db-pixel/db-pixel.otf);
+}
+
+* {
+    font-family: "db-pixel";
+}
+
+body {
+    background-color: rgb(43, 40, 50);
+}
+
+#title{
+    width: 50%;
+    padding-left: 25%;
+    padding-right: 25%;
+    text-align: center;
+}
+
+h1 {
+    color: floralwhite;
+    font-size: 300%;
+}
+
+#content {
+    width: 80%;
+    height: 80%;
+    padding: 10%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+#controls{
+    color: floralwhite;
+    border: solid 2px white;
+    padding: 2%;
+}
+
+#selectCtrl {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: center;
+}
+
+#rangeCtrl {
+    width: 50%;
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    justify-content: left;
+}
+
+label{
+    font-size: 12pt;
+}
+/* Range Style */
+input[type="range"]{
+    margin-bottom: 5%;
+    outline: none !important;
+    appearance: none;
+    cursor: pointer;
+    height: 10px;
+    box-shadow: 3px 3px 3px 0 rgba(100, 100, 100, 1);
+}
+    /* Chrome */
+input[type="range"]::-webkit-slider-thumb {
+    background-color: rebeccapurple;
+    border: 0;
+}
+    /* FireFox */
+input[type="range"]::-moz-range-thumb {
+    background-color: rebeccapurple;
+    height: 175%;
+    width: 5%;
+    border: 0;
+}
+input[type="range"]::-moz-range-progress {
+    background-color: mediumslateblue;
+    height: 100%;
+}
+input[type="range"]:hover{
+    border: 2px solid blueviolet;
+    box-shadow: 3px 3px 3px 0 rgba(200, 0, 250, 1);
+}
+input[type="range"]:hover::-moz-range-thumb {
+    border: 2px solid blueviolet;
+    box-shadow: 3px 3px 3px 0 rgba(200, 0, 250, 1);
+}
+input[type="range"]::-moz-range-track {
+  background-color: floralwhite;
+  border-radius:50%;
+  border:none;
+  height: 100%;
+}
+/* Range Style */
+
+/* SelectInput Style */
+select{
+    outline: none !important;
+    height: 30px;
+    background-color: floralwhite;
+    border: 0;
+    box-shadow: 3px 3px 3px 0 rgba(100, 100, 100, 1);
+}
+select:hover{
+    border: 2px solid blueviolet;
+    box-shadow: 3px 3px 3px 0 rgba(200, 0, 250, 1);
+}
+select:active{
+    background-color: lightgrey;
+}
+option{
+    color: white;
+}
+/* SelectInput Style */
+
+/* Button style */
+button{
+    outline: none !important;
+    appearance: none;
+    width: 15%;
+    height: 30px;
+    margin-top: 2%;
+    border: 0;
+    background-color: floralwhite;
+    box-shadow: 3px 3px 3px 0 rgba(100, 100, 100, 1);
+}
+button:hover{
+    border: 2px solid blueviolet;
+    box-shadow: 3px 3px 3px 0 rgba(200, 0, 250, 1);
+}
+button:active{
+    background-color: lightgrey;
+}
+/* Button style */
