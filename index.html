@@ -8,6 +8,7 @@
         <meta name="author" content="Author Name" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <script src="script.js" type="text/javascript" defer></script>
     </head>
     <body>
 
@@ -25,10 +26,10 @@
                         <div>
                             <label for="WfSelect">Waveform</label>
                             <select name="waveform" id="WfSelect">
-                                <option value="1">Square</option>
-                                <option value="2">Triangle</option>
-                                <option value="3">Sawtooth</option>
-                                <option value="4">Noise</option>
+                                <option value="SQUARE">Square</option>
+                                <option value="TRIANGLE">Triangle</option>
+                                <option value="SAWTOOTH">Sawtooth</option>
+                                <option value="NOISE">Noise</option>
                             </select>
                         </div>
                         <div>
@@ -68,11 +69,17 @@
                         <input type="range" name="sustain" id="SusRange" />
 
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Generate</button>
                     <button type="reset">Reset</button>
                 </form>
             </div>
-            <div id="monitor"></div>
+            <div id="monitor">
+                <canvas id="canvas_monitor">
+
+                </canvas>
+                <label for="OscScale">Scale</label>
+                <input type="range" name="OscScale" id="OscScale" max="100" min="1" step="1">
+            </div>
             <div id="keyboard"></div>
         </div>
     </body>
