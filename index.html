@@ -8,7 +8,9 @@
         <meta name="author" content="Author Name" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <script src="script.js" type="text/javascript" defer></script>
+        <script src="scripts/monitor.js" type="text/javascript" defer></script>
+        <script src="scripts/makeWave.js" type="text/javascript" defer></script>
+        <script src="scripts/piano.js" type="text/javascript" defer></script>
     </head>
     <body>
 
@@ -46,27 +48,32 @@
                             <label for="BSelect">Bits</label>
                             <select name="bits" id="BSelect">
                                 <option value="1">1-bit</option>
-                                <option value="2">8-bit</option>
-                                <option value="3">12-bit</option>
-                                <option value="4">16-bit</option>
+                                <option value="8">8-bit</option>
+                                <option value="12">12-bit</option>
+                                <option value="16">16-bit</option>
                             </select>
                         </div>
                     </div>
                     <div id="rangeCtrl">
                         <label for="DCRange">Duty-Cycle</label>
                         <input type="range" name="duty_cycle" id="DCRange"/>
+                        <label for="" id="DCRangeInfo">50%</label>
 
                         <label for="AtkRange">Attack</label>
                         <input type="range" name="attack" id="AtkRange" />
+                        <label for="" id="AtkRangeInfo">50%</label>
 
                         <label for="DcyRange">Decay</label>
                         <input type="range" name="decay" id="DcyRange" />
+                        <label for="" id="DcyRangeInfo">50%</label>
 
                         <label for="RlseRange">Release</label>
                         <input type="range" name="release" id="RlseRange" />
+                        <label for="" id="RlseRangeInfo">50%</label>
 
                         <label for="SusRange">Sustain</label>
                         <input type="range" name="sustain" id="SusRange" />
+                        <label for="" id="SusRangeInfo">50%</label>
 
                     </div>
                     <button type="submit">Generate</button>
@@ -77,10 +84,39 @@
                 <canvas id="canvas_monitor">
 
                 </canvas>
-                <label for="OscScale">Scale</label>
-                <input type="range" name="OscScale" id="OscScale" max="100" min="1" step="1">
+                <div id="oscInfo">
+                    <label for="OscScale">Scale</label>
+                    <input type="range" name="OscScale" id="OscScale" max="100" min="1" step="1">
+                </div>
             </div>
-            <div id="keyboard"></div>
+            <div id="keyboard">
+                <div id="keyboardInfo">
+                    <label for="">Octave</label>
+                    <select name="selectOctave" id="selectOctave">
+                        <option value="1">1°octave</option>
+                        <option value="2">2°octave</option>
+                        <option value="3">3°octave</option>
+                        <option value="4">4°octave</option>
+                        <option value="5">5°octave</option>
+                        <option value="6">6°octave</option>
+                        <option value="7">7°octave</option>
+                    </select>
+                </div>
+                <section id="keys" class="keyboardKeys">
+                    <div class="key whiteKey"><span>z</span></div>
+                    <div class="key blackKey"><span>s</span></div>
+                    <div class="key whiteKey"><span>x</span></div>
+                    <div class="key blackKey"><span>d</span></div>
+                    <div class="key whiteKey"><span>c</span></div>
+                    <div class="key whiteKey"><span>v</span></div>
+                    <div class="key blackKey"><span>g</span></div>
+                    <div class="key whiteKey"><span>b</span></div>
+                    <div class="key blackKey"><span>h</span></div>
+                    <div class="key whiteKey"><span>n</span></div>
+                    <div class="key blackKey"><span>j</span></div>
+                    <div class="key whiteKey"><span>m</span></div>
+                </section>
+            </div>
         </div>
     </body>
 </html>

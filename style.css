@@ -23,10 +23,10 @@ h1 {
     font-size: 300%;
 }
 
+/* Content Style */
 #content {
-    width: 80%;
+    width: 100%;
     height: 80%;
-    padding: 10%;
     display: grid;
     grid-template-columns: 60% 40%;
 }
@@ -47,14 +47,18 @@ h1 {
     width: 50%;
     margin-top: 5%;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 33% 34% 33%;
     grid-template-rows: 20% 20% 20% 20% 20%;
     justify-content: left;
 }
 
 label{
+    color: floralwhite;
     font-size: 12pt;
 }
+
+/* Content Style */
+
 /* Range Style */
 input[type="range"]{
     margin-bottom: 5%;
@@ -140,15 +144,86 @@ button:active{
 #monitor{
     color: floralwhite;
     padding: 2%;
-    align-items: center;
+}
+#oscInfo{
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
-
 canvas {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     margin-left: 5%;
     border: solid 2px white;
     background-color: black;
 }
 /* Canvas Style */
+
+/* Keyboard Style */
+#keyboard{
+    width: 100%;
+    margin-top: 5%;
+    background-color: rgb(75, 75, 75);
+    border: 2px solid blueviolet;
+    box-shadow: 3px 3px 3px 0 blueviolet;
+}
+
+#keyboardInfo{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    box-shadow: 0 5px 0 0 rgba(50, 50, 50, 1);
+    background-color: dimgray;
+
+}
+
+#keys{
+    margin-top: 2%;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.key{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1%;
+    user-select: none;
+}
+
+.whiteKey{
+    width: 10%;
+    background-color: white;
+    border-bottom: 10px solid silver;
+    color: gray;
+    z-index: 1;
+    margin-left: -2%;
+}
+
+.blackKey{
+    width: 5%;
+    background-color: rgb(40, 40, 40);
+    border-bottom: 10px solid rgb(20, 20, 20);
+    height: 60%;
+    margin-left: -2%;
+    z-index: 2;
+    color: floralwhite;
+}
+
+.keyboardKeys .whiteKey:nth-child(5){
+    margin-right: 3%;
+}
+
+.blackPressed{
+    background-color: rgb(20, 20, 20);
+    height: 65%;
+    border-bottom: none;
+}
+
+.whitePressed{
+    background-color: lightgray;
+    border-bottom: none;
+}
+/* Keyboard Style */
