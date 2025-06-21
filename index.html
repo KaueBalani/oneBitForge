@@ -8,9 +8,10 @@
         <meta name="author" content="Author Name" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <script src="scripts/monitor.js" type="text/javascript" defer></script>
+        <script src="scripts/init.js" type="text/javascript" defer></script>
         <script src="scripts/makeWave.js" type="text/javascript" defer></script>
         <script src="scripts/piano.js" type="text/javascript" defer></script>
+        <script src="scripts/monitor.js" type="text/javascript" defer></script>
     </head>
     <body>
 
@@ -56,28 +57,28 @@
                     </div>
                     <div id="rangeCtrl">
                         <label for="DCRange">Duty-Cycle</label>
-                        <input type="range" name="duty_cycle" id="DCRange"/>
+                        <input type="range" name="duty_cycle" id="DCRange" min="1" max="99" value="50"/>
                         <label for="" id="DCRangeInfo">50%</label>
 
                         <label for="AtkRange">Attack</label>
-                        <input type="range" name="attack" id="AtkRange" />
-                        <label for="" id="AtkRangeInfo">50%</label>
+                        <input type="range" name="attack" id="AtkRange" value="0" min="0" max="1000" />
+                        <label for="" id="AtkRangeInfo">0 ms</label>
 
                         <label for="DcyRange">Decay</label>
-                        <input type="range" name="decay" id="DcyRange" />
-                        <label for="" id="DcyRangeInfo">50%</label>
-
-                        <label for="RlseRange">Release</label>
-                        <input type="range" name="release" id="RlseRange" />
-                        <label for="" id="RlseRangeInfo">50%</label>
+                        <input type="range" name="decay" id="DcyRange" value="0" min="0" max="1000" />
+                        <label for="" id="DcyRangeInfo">0 ms</label>
 
                         <label for="SusRange">Sustain</label>
-                        <input type="range" name="sustain" id="SusRange" />
-                        <label for="" id="SusRangeInfo">50%</label>
+                        <input type="range" name="sustain" id="SusRange" value="0" min="0" max="100" />
+                        <label for="" id="SusRangeInfo">0%</label>
+
+                        <label for="RlseRange">Release</label>
+                        <input type="range" name="release" id="RlseRange" value="0" min="0" max="1000" />
+                        <label for="" id="RlseRangeInfo">0 ms</label>
 
                     </div>
                     <button type="submit">Generate</button>
-                    <button type="reset">Reset</button>
+                    <button type="reset" onclick="initialState()">Reset</button>
                 </form>
             </div>
             <div id="monitor">
@@ -86,7 +87,8 @@
                 </canvas>
                 <div id="oscInfo">
                     <label for="OscScale">Scale</label>
-                    <input type="range" name="OscScale" id="OscScale" max="100" min="1" step="1">
+                    <input type="range" name="OscScale" id="OscScale" max="100" min="1" step="1" value="50">
+                    <label for="" id="OscScaleInfo">50%</label>
                 </div>
             </div>
             <div id="keyboard">

@@ -1,10 +1,15 @@
 // Web Audio API
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioCtx.createAnalyser();
+analyser.fftSize = 4096 * (osc_scale / 100);
+
 // Definicao das teclas
 const keys = document.querySelectorAll('.key');
 
 // Variables
+var current_buffer;
 
+// functions
 
 // Metodo de pressionar tecla
 const handleMouseDown = (key) => {
@@ -20,9 +25,11 @@ const handleMouseDown = (key) => {
 
   let keys_array = Array.from(keys);
   let current_freq = 440 * (2 ** (((keys_array.indexOf(key) + 12 * (octave-1)) - 69) / 12));
-  let audio = generateBuffer(currentWave, current_freq);
+
+  current_buffer = generateBufferSquare(currentWave, current_freq);
   let source = audioCtx.createBufferSource();
-  source.buffer = audio;
+  source.buffer = current_buffer;
+  source.connect(analyser);
   source.connect(audioCtx.destination);
   source.start();
 };
@@ -80,20 +87,3 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
   keyUpMapper[event.key]();
 });
-
-// Generate Sound
-function generateBuffer(wave, freq)
-{
-  let samples_per_cycle = Math.floor(wave.w_sample_rate / freq)
-  let buffer = audioCtx.createBuffer(1, wave.w_sample_rate, wave.w_sample_rate);
-
-  let samples = buffer.getChannelData(0);
-
-  for (let i = 0; i < wave.w_sample_rate; i++)
-  {
-    let pos_in_cycle = i % samples_per_cycle;
-    samples[i] = (pos_in_cycle < samples_per_cycle / 2) ? 1 : -1;
-  }
-
-  return buffer;
-}
