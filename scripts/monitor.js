@@ -22,7 +22,7 @@ function drawSquareWave()
   for (let i = 0; i < buffer_length; i++)
   {
     const v = dataArray[i];
-    const y = canvas.height / 2 - v * (canvas.height / 2);
+    const y = canvas.height / 2 - v * (canvas.height / 4);
 
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -30,7 +30,7 @@ function drawSquareWave()
     x += sliceWidth;
   }
 
-  ctx.lineTo(canvas.width, canvas.height / 2);
+  ctx.lineTo(canvas.width, canvas.height / 4);
   ctx.stroke();
 }
 

@@ -1,3 +1,6 @@
+// Constants
+const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
 // Classes
 class Wave{
   constructor(sr, t)
@@ -31,7 +34,6 @@ function initialState()
   rangeDecay.value = DEFAULT_DECAY;
   rangeRelease.value = DEFAULT_RELEASE;
   rangeSustain.value = DEFAULT_SUSTAIN;
-  rangeOscScale.value = DEFAULT_OSC_SCALE;
 
   rangeAttack.setAttribute('disabled', 'disabled');
   rangeDecay.setAttribute('disabled', 'disabled');
@@ -43,12 +45,14 @@ function initialState()
   infoDec.innerHTML = DEFAULT_DECAY.toString() + ' ms';
   infoRlse.innerHTML = DEFAULT_RELEASE.toString() + ' ms';
   infoSus.innerHTML = DEFAULT_SUSTAIN.toString() + '%';
-  infoOscScale.innerHTML = DEFAULT_OSC_SCALE.toString() + '%';
 
   selectWaveForm.value = DEFAULT_WAVE_TYPE;
   selectQuality.value = DEFAULT_SAMPLE_RATE.toString();
   selectBits.value = DEFAULT_BITS.toString();
   selectOctave.value = DEFAULT_OCTAVE.toString();
+
+  numberFirstOctave.value = DEFAULT_FIRST_OCTAVE.toString();
+  numberLastOctave.value = DEFAULT_LAST_OCTAVE.toString();
 
   currentWave = verifyWaveType();
 }
@@ -64,16 +68,14 @@ function verifyWaveType()
   }
   if (wave_type == "TRIANGLE")
   {
-
+    return null;
   }
   if (wave_type == "SAWTOOTH")
   {
-
+    return null;
   }
-  if (wave_type == "NOISE")
-  {
-
-  }
+  // Noise
+  return null;
 }
 
 // Generate Sound
@@ -131,7 +133,7 @@ function generateBufferSquare(wave, freq)
     for (let i = 0; i < total_samples; i++)
     {
       let pos_in_cycle = i % samples_per_cycle;
-      let base = (pos_in_cycle < threshold) ? 1 : -1;
+      let base = (pos_in_cycle < threshold) ? 1.0 : -1.0;
 
       let envelope = applyADSR(i,
         noteOnTime,
@@ -147,4 +149,58 @@ function generateBufferSquare(wave, freq)
     }
   }
   return buffer;
+}
+
+function float32ToInt16(buffer) {
+  const output = new Int16Array(buffer.length);
+  for (let i = 0; i < buffer.length; i++) {
+    output[i] = Math.max(-32768, Math.min(32767, buffer[i] * 32767));
+  }
+  return output;
+}
+
+function generateWav(freq)
+{
+  let b = new generateBufferSquare(currentWave, freq).getChannelData(0)
+  let myBuffer = float32ToInt16(b);
+  const wav = new wavefile.WaveFile();
+  wav.fromScratch(1, currentWave.w_sample_rate, '16', myBuffer);
+
+  const wavBlob = new Blob([wav.toBuffer()], { type: 'audio/wav' });
+  return wavBlob;
+}
+
+function generateFile() {
+  const wavArray = [];
+  for (let i = first_octave; i <= last_octave; i++)
+    for (let j = 0; j < 12; j++) {
+      let midi_note = j + 12 * (i + 1);
+      let freq = 440 * (2 ** ((midi_note - 69) / 12));
+      wavArray.push(generateWav(freq));
+    }
+
+  const sfz_content = [];
+  sfz_content.push("<group>");
+
+  const zip = new JSZip();
+
+  wavArray.forEach((blob, i) => {
+    let key = notes[i%12];
+    let midi_note = i + 12 * (first_octave + 1)
+    let current_octave = Math.floor(i / 12) + first_octave;
+    let filename = `${key}${current_octave}.wav`;
+
+    sfz_content.push(`<region key=${midi_note} sample=${filename}>`)
+    zip.file(`${filename}`, blob);
+  })
+  const sfzBlob = new Blob([sfz_content.join('\n')], { type: 'text/plain' });
+  zip.file('Instrument.sfz', sfzBlob);
+
+  zip.generateAsync({ type: "blob" }).then(content => {
+    const url = URL.createObjectURL(content);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'instrument.zip';
+    a.click();
+  });
 }

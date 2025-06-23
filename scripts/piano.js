@@ -1,7 +1,7 @@
 // Web Audio API
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioCtx.createAnalyser();
-analyser.fftSize = 4096 * (osc_scale / 100);
+analyser.fftSize = 512;
 
 // Definicao das teclas
 const keys = document.querySelectorAll('.key');
@@ -24,7 +24,10 @@ const handleMouseDown = (key) => {
   }
 
   let keys_array = Array.from(keys);
-  let current_freq = 440 * (2 ** (((keys_array.indexOf(key) + 12 * (octave-1)) - 69) / 12));
+  let midi_note = keys_array.indexOf(key) + 12 * (octave+1)
+  let current_freq = 440 * (2 ** ((midi_note - 69) / 12));
+
+  console.log(keys_array.indexOf(key));
 
   current_buffer = generateBufferSquare(currentWave, current_freq);
   let source = audioCtx.createBufferSource();

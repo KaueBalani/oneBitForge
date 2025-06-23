@@ -2,12 +2,14 @@
 <html lang="pt-br">
     <head>
         <meta charset="utf-8" />
-        <title>oneBitGen</title>
+        <title>oneBitForge</title>
         <meta name="description" content="Page Description" />
         <meta name="keywords" content="keywords, separated by commas" />
         <meta name="author" content="Author Name" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <script src="scripts/wavefile.js"></script>
+        <script src="scripts/jszip.js"></script>
         <script src="scripts/init.js" type="text/javascript" defer></script>
         <script src="scripts/makeWave.js" type="text/javascript" defer></script>
         <script src="scripts/piano.js" type="text/javascript" defer></script>
@@ -77,19 +79,21 @@
                         <label for="" id="RlseRangeInfo">0 ms</label>
 
                     </div>
-                    <button type="submit">Generate</button>
-                    <button type="reset" onclick="initialState()">Reset</button>
+
+                    <div id="octaveInterval">
+                        <label for="firstOctave">First Octave</label>
+                        <input type="number" name="firstOctave" id="firstOctave" min="1" max="7" value="3">
+                        <label for="lastOctave">Last Octave</label>
+                        <input type="number" name="lastOctave" id="lastOctave" min="1" max="7" value="7">
+                    </div>
+                    <button onclick="generateFile()">Generate</button>
+                    <button onclick="initialState()">Reset</button>
                 </form>
             </div>
             <div id="monitor">
                 <canvas id="canvas_monitor">
 
                 </canvas>
-                <div id="oscInfo">
-                    <label for="OscScale">Scale</label>
-                    <input type="range" name="OscScale" id="OscScale" max="100" min="1" step="1" value="50">
-                    <label for="" id="OscScaleInfo">50%</label>
-                </div>
             </div>
             <div id="keyboard">
                 <div id="keyboardInfo">

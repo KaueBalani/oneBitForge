@@ -120,6 +120,20 @@ option{
 }
 /* SelectInput Style */
 
+/* Input Number Style */
+
+input[type="number"]{
+    background-color: floralwhite;
+    border: 0;
+    box-shadow: 3px 3px 3px 0 rgba(100, 100, 100, 1);
+}
+
+input[type="number"]:hover{
+    box-shadow: 3px 3px 3px 0 rgba(200, 0, 250, 1);
+}
+
+/* Input Number Style */
+
 /* Button style */
 button{
     outline: none !important;
@@ -144,10 +158,6 @@ button:active{
 #monitor{
     color: floralwhite;
     padding: 2%;
-}
-#oscInfo{
-    display: grid;
-    grid-template-columns: 33% 34% 33%;
 }
 
 canvas {
